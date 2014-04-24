@@ -8,11 +8,11 @@ class TwbBundleFormElement extends \Zend\Form\View\Helper\FormElement implements
      * @var string
      */
     protected static $addonFormat = '<%s class="%s">%s</%s>';
-
+    
     /**
      * @var string
      */
-    protected static $inputGroupFormat = '<div class="input-group %s">%s</div>';
+    protected static $inputGroupFormat = '<div class="input-group %s" %s>%s</div>';
 
     /**
      * Translator (optional)
@@ -89,8 +89,21 @@ class TwbBundleFormElement extends \Zend\Form\View\Helper\FormElement implements
                     $sSpecialClass .= ' input-group-sm';
                 }
             }
+            
+            $sExtraAttr = '';
+            if ($sInputgroupAttr = @$oElement->getAttribute('input-group')) {
+                $sSpecialClass .= ' ' . @$sInputgroupAttr['class'];
+                
+                if (array_key_exists('extra',$sInputgroupAttr){
+                    foreach($sInputgroupAttr['extra'] as $key => $value){
+                        $sExtraAttr .= $key . '="' . $value . '" ';
+                    }
+                }
+                
+            }
+            
             return sprintf(
-                    self::$inputGroupFormat, trim($sSpecialClass), $sMarkup
+                    self::$inputGroupFormat, trim($sSpecialClass), trim($sExtraAttr), $sMarkup
             );
         }
         return $sMarkup;
