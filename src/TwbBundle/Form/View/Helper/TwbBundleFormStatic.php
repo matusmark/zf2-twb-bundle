@@ -32,6 +32,8 @@ class TwbBundleFormStatic extends \Zend\Form\View\Helper\AbstractHelper{
 	 * @return string
 	 */
 	public function render(ElementInterface $oElement){
-		return sprintf(self::$staticFormat,$oElement->getValue());
+		$oTranslator = $this->getTranslator();
+	    	$value = $oTranslator->translate($oElement->getValue());
+		return sprintf(self::$staticFormat,$value);
 	}
 }
