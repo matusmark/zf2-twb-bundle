@@ -94,7 +94,7 @@ class TwbBundleFormElement extends \Zend\Form\View\Helper\FormElement implements
             if ($sInputgroupAttr = @$oElement->getAttribute('input-group')) {
                 $sSpecialClass .= ' ' . @$sInputgroupAttr['class'];
                 
-                if (array_key_exists('extra',$sInputgroupAttr){
+                if (array_key_exists('extra',$sInputgroupAttr)){
                     foreach($sInputgroupAttr['extra'] as $key => $value){
                         $sExtraAttr .= $key . '="' . $value . '" ';
                     }
