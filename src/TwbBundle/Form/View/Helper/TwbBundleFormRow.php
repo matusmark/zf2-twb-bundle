@@ -87,6 +87,10 @@ class TwbBundleFormRow extends \Zend\Form\View\Helper\FormRow {
         ) {
             $sRowClass .= ' col-' . $sColumSize;
         }
+        
+        if ($sFormgroupAttribute = $oElement->getAttribute('form-group')) {
+            $sRowClass .= ' ' . @$sFormgroupAttribute['class'];
+        }
 
         //Render element
         $sElementContent = $this->renderElement($oElement);
